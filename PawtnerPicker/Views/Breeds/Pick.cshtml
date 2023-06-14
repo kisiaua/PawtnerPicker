@@ -1,0 +1,58 @@
+﻿@model PawtnerPicker.Models.ViewModels.PickBreedViewModel
+
+@{
+    ViewData["Title"] = "Pick breed";
+}
+
+<h1 class="mb-4">Pick dog breed</h1>
+<form action="Pick" method="post">
+    <div class="mb-3">
+        <label class="form-label">Popularity (1-195)</label>
+        <input type="number" step="1" class="form-control" asp-for="Popularity">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Minimum height</label>
+        <input type="number" class="form-control" asp-for="MinHeight">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Maximum height</label>
+        <input type="number" class="form-control" asp-for="MaxHeight">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Minimum weight</label>
+        <input type="number" class="form-control" asp-for="MinWeight">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Maximum weight</label>
+        <input type="number" class="form-control" asp-for="MaxWeight">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Minimum life expectancy</label>
+        <input type="number" step="1" class="form-control" asp-for="MinExpectancy">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Maximum life expectancy</label>
+        <input type="number" step="1" class="form-control" asp-for="MaxExpectancy">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Grooming frequency</label>
+        <input type="number" step="0.2" class="form-control" asp-for="GroomingFrequency">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Shedding</label>
+        <input type="number" step="0.2" class="form-control" asp-for="Shedding">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Energy level</label>
+        <input type="number" step="0.2" class="form-control" asp-for="EnergyLevel">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Trainability</label>
+        <input type="number" step="0.2" class="form-control" asp-for="Trainability">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Demeanor</label>
+        <input type="number" step="0.2" class="form-control" asp-for="Demeanor">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
