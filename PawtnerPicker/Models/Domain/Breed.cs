@@ -4,6 +4,7 @@ public class Breed
 {
     public int Id { get; set; }
     public string? Description { get; set; }
+    public string? BreedName { get; set; }
     public string? Temperament { get; set; }
     public int Popularity { get; set; }
     public float MinHeight { get; set; }

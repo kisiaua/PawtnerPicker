@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PawtnerPicker.Models.ViewModels;
+using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
 
 public class BreedsController : Controller
 {
+
+    private readonly ICsvProcesssingService _service;
+
+    public BreedsController(ICsvProcesssingService service)
+    {
+        _service = service;
+    }
+
     [HttpGet]
     public IActionResult Pick()
     {

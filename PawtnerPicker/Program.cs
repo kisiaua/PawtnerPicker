@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PawtnerPicker.Data;
+using PawtnerPicker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ICsvProcesssingService, CsvProcessingService>();
 
 var app = builder.Build();
 
