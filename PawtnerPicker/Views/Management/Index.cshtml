@@ -8,7 +8,8 @@
             <div class="card-body">
                 <h5 class="card-title">Add breed database</h5>
                 <p class="card-text">Sets the database to the dog breed database, if no other database is selected.</p>
-                <a href="#" class="btn btn-primary disabled">Add</a>
+                <a asp-action="Add" class="btn btn-primary">Add</a>
+                <p class="card-text mt-2 text-danger">@TempData["ErrorAddTable"]</p>
             </div>
         </div>
     </div>
@@ -17,16 +18,17 @@
             <div class="card-body">
                 <h5 class="card-title">Delete breed database</h5>
                 <p class="card-text">Clears all made changes and the entire breed database</p>
-                <a href="#" class="btn btn-primary disabled">Add</a>
+                <a asp-action="Delete" class="btn btn-primary">Add</a>
+                <p class="card-text mt-2 text-danger">@TempData["ErrorDeleteTable"]</p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card">
+        <div class="card h-100">
             <div class="card-body">
                 <h5 class="card-title">Restore breed database</h5>
                 <p class="card-text">Deletes the changes made and restores the breed database to its initial state</p>
-                <a href="#" class="btn btn-primary disabled">Add</a>
+                <a asp-action="Restore" class="btn btn-primary">Add</a>
             </div>
         </div>
     </div>
