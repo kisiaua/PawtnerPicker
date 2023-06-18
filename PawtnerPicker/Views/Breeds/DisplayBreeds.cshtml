@@ -1,0 +1,40 @@
+﻿@model List<PawtnerPicker.Models.Domain.Breed>
+
+@{
+    ViewBag.Title = "Breeds";
+}
+
+<h1>Breeds</h1>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Breed</th>
+        <th>Popularity</th>
+        <th>Min height</th>
+        <th>Max height</th>
+        <th>Min weight</th>
+        <th>Max weight</th>
+        <th>Min age</th>
+        <th>Max age</th>
+        <th>Group</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var breed in Model)
+        {
+            <tr>
+                <td>@breed.BreedName</td>
+                <td>@breed.Popularity</td>
+                <td>@breed.MinHeight</td>
+                <td>@breed.MaxHeight</td>
+                <td>@Math.Round(breed.MinWeight, 2)</td>
+                <td>@Math.Round(breed.MaxWeight, 2)</td>
+                <td>@breed.MinExpectancy</td>
+                <td>@breed.MaxExpectancy</td>
+                <td>@breed.Group</td>
+                <td><a href="#">More info</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

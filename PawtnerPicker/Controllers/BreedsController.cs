@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PawtnerPicker.Data;
 using PawtnerPicker.Models.ViewModels;
-using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
 
 public class BreedsController : Controller
 {
 
-    private readonly ICsvProcesssingService _service;
+    private readonly DataContext _dataContext;
 
-    public BreedsController(ICsvProcesssingService service)
+    public BreedsController(DataContext dataContext)
     {
-        _service = service;
+        _dataContext = dataContext;
     }
 
     [HttpGet]
@@ -24,5 +25,12 @@ public class BreedsController : Controller
     public IActionResult Pick(PickBreedViewModel pickBreedViewModel)
     {
         return RedirectToAction("Index", "Home");
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> DisplayBreeds()
+    {
+        var breeds = await _dataContext.Breeds.ToListAsync();
+        return View(breeds);
     }
 }
