@@ -20,13 +20,13 @@ public class ManagementController : Controller
         return View();
     }
 
-    public IActionResult Add()
+    public async Task<IActionResult> Add()
     {
         if (!_dataContext.Breeds.Any())
         {
             var csvData = _service.GetAll();
-            _dataContext.Breeds.AddRange(csvData);
-            _dataContext.SaveChanges();
+            await _dataContext.Breeds.AddRangeAsync(csvData);
+            await _dataContext.SaveChangesAsync();
         }
         else
         {
@@ -36,12 +36,12 @@ public class ManagementController : Controller
         return RedirectToAction("Index");
     }
 
-    public IActionResult Delete()
+    public async Task<IActionResult> Delete()
     {
         if (_dataContext.Breeds.Any())
         {
             _dataContext.Breeds.RemoveRange(_dataContext.Breeds);
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
         else
         {
@@ -51,10 +51,10 @@ public class ManagementController : Controller
         return RedirectToAction("Index");
     }
 
-    public IActionResult Restore()
+    public async Task<IActionResult> Restore()
     {
-        Delete();
-        Add();
+        await Delete();
+        await Add();
         TempData["ErrorAddTable"] = "";
         TempData["ErrorDeleteTable"] = "";
         return RedirectToAction("Index");
