@@ -33,4 +33,11 @@ public class BreedsController : Controller
         var breeds = await _dataContext.Breeds.ToListAsync();
         return View(breeds);
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var breed = await _dataContext.Breeds.FindAsync(id);
+        return View(breed);
+    }
 }
