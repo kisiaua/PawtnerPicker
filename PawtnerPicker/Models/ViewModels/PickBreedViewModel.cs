@@ -9,9 +9,9 @@ public class PickBreedViewModel
     public float MaxWeight { get; set; }
     public int MinExpectancy { get; set; }
     public int MaxExpectancy { get; set; }
-    public float GroomingFrequency { get; set; }
-    public float Shedding { get; set; }
-    public float EnergyLevel { get; set; }
-    public float Trainability { get; set; }
-    public float Demeanor { get; set; }
+    public float GroomingFrequencyValue { get; set; }
+    public float SheddingValue { get; set; }
+    public float EnergyLevelValue { get; set; }
+    public float TrainabilityValue { get; set; }
+    public float DemeanorValue { get; set; }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PawtnerPicker.Data;
 using PawtnerPicker.Models.ViewModels;
+using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
 
@@ -9,10 +10,12 @@ public class BreedsController : Controller
 {
 
     private readonly DataContext _dataContext;
+    private readonly IPickBreedService _pickBreedService;
 
-    public BreedsController(DataContext dataContext)
+    public BreedsController(DataContext dataContext, IPickBreedService pickBreedService)
     {
         _dataContext = dataContext;
+        _pickBreedService = pickBreedService;
     }
 
     [HttpGet]
@@ -22,9 +25,10 @@ public class BreedsController : Controller
     }
 
     [HttpPost]
-    public IActionResult Pick(PickBreedViewModel pickBreedViewModel)
+    public async Task<IActionResult> Pick(PickBreedViewModel pickBreedViewModel)
     {
-        return RedirectToAction("Index", "Home");
+        var recommendations = await _pickBreedService.GetRecommendations(pickBreedViewModel);
+        return View("Recommendations", recommendations);
     }
     
     [HttpGet]

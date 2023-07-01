@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ICsvProcesssingService, CsvProcessingService>();
+builder.Services.AddScoped<IPickBreedService, PickBreedService>();
 
 var app = builder.Build();
 
