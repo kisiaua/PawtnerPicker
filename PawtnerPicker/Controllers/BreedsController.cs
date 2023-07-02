@@ -42,6 +42,13 @@ public class BreedsController : Controller
     public async Task<IActionResult> Details(int id)
     {
         var breed = await _dataContext.Breeds.FindAsync(id);
-        return View(breed);
+        var urlImage = await FetchImage.GetImageUrl(breed.BreedName);
+        
+        var breedDetailsViewModel = new BreedDetailsViewModel
+        {
+            Breed = breed,
+            UrlImage = urlImage
+        };
+        return View(breedDetailsViewModel);
     }
 }

@@ -1,7 +1,8 @@
-﻿@model PawtnerPicker.Models.Domain.Breed
+﻿@model PawtnerPicker.Models.ViewModels.BreedDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.BreedName</h2>
+<h2>@Model.Breed.BreedName</h2>
+<img src="@Model.UrlImage" alt="Breed image">
