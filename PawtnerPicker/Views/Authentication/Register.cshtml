@@ -1,0 +1,21 @@
+﻿@model PawtnerPicker.Models.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h1 class="mb-4">Register</h1>
+<form action = "Register" method="post">
+    <div class="mb-3">
+        <label class="form-label">Login</label>
+        <input type="text" class="form-control" asp-for="Login">
+    </div>
+        <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="text" class="form-control" asp-for="Password">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input type="text" class="form-control" asp-for="ConfirmPassword">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
