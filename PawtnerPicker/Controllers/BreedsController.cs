@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PawtnerPicker.Data;
+using PawtnerPicker.Models.Domain;
 using PawtnerPicker.Models.ViewModels;
 using PawtnerPicker.Services;
 
@@ -41,14 +42,7 @@ public class BreedsController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var breed = await _dataContext.Breeds
-            .Include(b => b.GroomingFrequency)
-            .Include(b => b.GroomingFrequency)
-            .Include(b => b.Shedding)
-            .Include(b => b.EnergyLevel)
-            .Include(b => b.Trainability)
-            .Include(b => b.Demeanor)
-            .FirstOrDefaultAsync(b => b.Id == id);
+        var breed = await GetBreedById.GetBreedDetails(_dataContext, id);
         var urlImage = await FetchImage.GetImageUrl(breed.BreedName);
         
         var breedDetailsViewModel = new BreedDetailsViewModel
@@ -57,5 +51,21 @@ public class BreedsController : Controller
             UrlImage = urlImage
         };
         return View(breedDetailsViewModel);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var breed = await GetBreedById.GetBreedDetails(_dataContext, id);
+        return View(breed);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Breed updateBreed)
+    {
+        var breed = await GetBreedById.GetBreedDetails(_dataContext, updateBreed.Id);
+        UpdateBreedProps.Update(breed, updateBreed);
+        await _dataContext.SaveChangesAsync();
+        return RedirectToAction("DisplayBreeds");
     }
 }

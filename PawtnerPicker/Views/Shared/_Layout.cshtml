@@ -1,9 +1,5 @@
 ﻿@{
-    bool isLogged = true;
-    if (String.IsNullOrWhiteSpace(User.Identity.Name))
-    {
-        isLogged = false;
-    }
+    var isLogged = !string.IsNullOrWhiteSpace(User.Identity.Name);
 }
 
 <!DOCTYPE html>
@@ -39,26 +35,26 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Pick">Pick breed</a>
                     </li>
-               @{
-                if (!isLogged)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
-                                </li>
-                            }
-                            if (isLogged)
-                            {
-                                                            <li class="nav-item">
+                    @{
+                        if (!isLogged)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
+                            </li>
+                        }
+                        if (isLogged)
+                        {
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Index">Manage</a>
                             </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="SignOut">SignOut</a>
-                        </li>
-                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="SignOut">SignOut</a>
+                            </li>
                         }
+                    }
                 </ul>
             </div>
         </div>

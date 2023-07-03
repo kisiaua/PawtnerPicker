@@ -1,15 +1,27 @@
-﻿@model PawtnerPicker.Models.ViewModels.PickBreedViewModel
+﻿@model PawtnerPicker.Models.Domain.Breed
 
 @{
-    ViewData["Title"] = "Pick breed";
+    ViewBag.Title = "Edit Breed";
 }
 
-<h1 class="mb-4">Pick dog breed</h1>
-<form action="Pick" method="post">
-     <div class="mb-3">
+<h1 class="mb-4">Edit breed</h1>
+<form action="Edit" method="post">
+    <div class="mb-3">
+        <label class="form-label">ID</label>
+        <input type="number" class="form-control" asp-for="Id" readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Temperament</label>
+        <textarea class="form-control" rows="1" asp-for="Temperament" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" asp-for="Description" required></textarea>
+    </div>
+    <div class="mb-3">
         <label class="form-label">Popularity</label>
         <input type="number" min="1" max="200" step="1" class="form-control" asp-for="Popularity" required>
-     </div>
+    </div>
     <div class="mb-3">
         <label class="form-label">Minimum height</label>
         <input type="number" min="10" max="100" step="any" class="form-control" asp-for="MinHeight" required>
