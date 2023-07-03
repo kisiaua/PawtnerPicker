@@ -68,4 +68,13 @@ public class BreedsController : Controller
         await _dataContext.SaveChangesAsync();
         return RedirectToAction("DisplayBreeds");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Remove(int id)
+    {
+        var delBreed = await GetBreedById.GetBreedDetails(_dataContext, id);
+        _dataContext.Breeds.Remove(delBreed);
+        await _dataContext.SaveChangesAsync();
+        return RedirectToAction("DisplayBreeds");
+    }
 }

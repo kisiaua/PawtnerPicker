@@ -23,34 +23,38 @@
     </tr>
     </thead>
     <tbody>
-        @foreach(var breed in Model)
-        {
-            <tr>
-                <td>@breed.BreedName</td>
-                <td>@breed.Popularity</td>
-                <td>@breed.MinHeight</td>
-                <td>@breed.MaxHeight</td>
-                <td>@Math.Round(breed.MinWeight, 2)</td>
-                <td>@Math.Round(breed.MaxWeight, 2)</td>
-                <td>@breed.MinExpectancy</td>
-                <td>@breed.MaxExpectancy</td>
-                <td>@breed.Group</td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="Details/@breed.Id">
-                        <i class="bi bi-info-square"></i>
-                    </a>
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="Edit/@breed.Id">
-                        <i class="bi bi-pencil-square"></i>
-                    </a>
-                </td>                
-                <td>
-                    <a class="btn btn-danger btn-sm" href="Edit/@breed.Id">
+    @foreach (var breed in Model)
+    {
+        <tr>
+            <td>@breed.BreedName</td>
+            <td>@breed.Popularity</td>
+            <td>@breed.MinHeight</td>
+            <td>@breed.MaxHeight</td>
+            <td>@Math.Round(breed.MinWeight, 2)</td>
+            <td>@Math.Round(breed.MaxWeight, 2)</td>
+            <td>@breed.MinExpectancy</td>
+            <td>@breed.MaxExpectancy</td>
+            <td>@breed.Group</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="Details/@breed.Id">
+                    <i class="bi bi-info-square"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="Edit/@breed.Id">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+            </td>
+            <td>
+                @* small workaround, to be improved *@
+                <form action="Remove" method="post">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <input type="hidden" name="id" value="@breed.Id"/>
                         <i class="bi bi-x-square"></i>
-                    </a>
-                </td>
-            </tr>
-        }
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
