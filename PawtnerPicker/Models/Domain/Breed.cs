@@ -1,4 +1,6 @@
-﻿namespace PawtnerPicker.Models.Domain;
+﻿using CsvHelper.Configuration.Attributes;
+
+namespace PawtnerPicker.Models.Domain;
 
 public class Breed
 {
@@ -14,14 +16,21 @@ public class Breed
     public int MinExpectancy { get; set; }
     public int MaxExpectancy { get; set; }
     public string? Group { get; set; }
+    
     public float GroomingFrequencyValue { get; set; }
-    public string? GroomingFrequencyCategory { get; set; }
     public float SheddingValue { get; set; }
-    public string? SheddingCategory { get; set; }
     public float EnergyLevelValue { get; set; }
-    public string? EnergyLevelCategory { get; set; }
     public float TrainabilityValue { get; set; }
-    public string? TrainabilityCategory { get; set; }
     public float DemeanorValue { get; set; }
-    public string? DemeanorCategory { get; set; }
+    
+    [Ignore]
+    public GroomingFrequency? GroomingFrequency { get; set; }
+    [Ignore]
+    public Shedding? Shedding { get; set; }
+    [Ignore]
+    public EnergyLevel? EnergyLevel { get; set; }
+    [Ignore]
+    public Trainability? Trainability { get; set; }
+    [Ignore]
+    public Demeanor? Demeanor { get; set; }
 }

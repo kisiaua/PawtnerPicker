@@ -41,7 +41,14 @@ public class BreedsController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var breed = await _dataContext.Breeds.FindAsync(id);
+        var breed = await _dataContext.Breeds
+            .Include(b => b.GroomingFrequency)
+            .Include(b => b.GroomingFrequency)
+            .Include(b => b.Shedding)
+            .Include(b => b.EnergyLevel)
+            .Include(b => b.Trainability)
+            .Include(b => b.Demeanor)
+            .FirstOrDefaultAsync(b => b.Id == id);
         var urlImage = await FetchImage.GetImageUrl(breed.BreedName);
         
         var breedDetailsViewModel = new BreedDetailsViewModel
