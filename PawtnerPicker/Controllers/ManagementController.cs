@@ -56,6 +56,7 @@ public class ManagementController : Controller
             await _dataContext.Demeanors.AddRangeAsync(csvDemeanor);
             await _dataContext.Breeds.AddRangeAsync(csvBreed);
             await _dataContext.SaveChangesAsync();
+            TempData["SuccesAddTable"] = "Tables have been added.";
         }
         else
         {
@@ -76,6 +77,7 @@ public class ManagementController : Controller
             _dataContext.Trainabilities.RemoveRange(_dataContext.Trainabilities);
             _dataContext.Demeanors.RemoveRange(_dataContext.Demeanors);
             await _dataContext.SaveChangesAsync();
+            TempData["SuccesDeleteTable"] = "Tables have been deleted.";
         }
         else
         {
@@ -91,6 +93,9 @@ public class ManagementController : Controller
         await Add();
         TempData["ErrorAddTable"] = "";
         TempData["ErrorDeleteTable"] = "";
+        TempData["SuccesAddTable"] = "";
+        TempData["SuccesDeleteTable"] = "";
+        TempData["SuccesRestoreTable"] = "Tables have been restored.";
         return RedirectToAction("Index");
     }
 }
