@@ -1,4 +1,6 @@
-﻿namespace PawtnerPicker.Models.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PawtnerPicker.Models.ViewModels
 {
     public class RegisterViewModel
     {

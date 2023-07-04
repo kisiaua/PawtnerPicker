@@ -9,13 +9,13 @@
 <div class="login">
 <form action = "Register" method="post">
         <label><b>Username</b></label>
-        <input type="text" placeholder = "Username" id="Uname" asp-for="Login" required>
+        <input type="text" placeholder = "Username" id="Uname" asp-for="Login" required pattern="[^' ']+">
         <br /><br />
         <label><b>Password</b></label>
-        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="Password" required>
+        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="Password" required pattern="[^' ']+" title="This field is required">
         <br /><br />
         <label><b>ConfirmPassword</b></label>
-        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="ConfirmPassword" required>
+        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="ConfirmPassword" required pattern="[^' ']+" title="This field is required">
         <br /><br />
         <button type="submit" value="Login" name="value" id="log">Register</button>
 </form>
