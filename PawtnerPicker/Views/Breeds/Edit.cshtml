@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit Breed";
 }
 
-<h1 class="mb-4">Edit breed</h1>
+<h1 class="mb-4">Edit breed - @Model.BreedName</h1>
 <form action="Edit" method="post">
     <div class="mb-3">
         <label class="form-label">ID</label>
@@ -25,26 +25,32 @@
     <div class="mb-3">
         <label class="form-label">Minimum height</label>
         <input type="number" min="10" max="100" step="any" class="form-control" asp-for="MinHeight" required>
+        <span class="text-danger" asp-validation-for="MinHeight"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Maximum height</label>
         <input type="number" min="10" max="100" step="any" class="form-control" asp-for="MaxHeight" required>
+        <span class="text-danger" asp-validation-for="MaxHeight"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Minimum weight</label>
         <input type="number" min="1" max="105" step="any" class="form-control" asp-for="MinWeight" id="MinWeight" required>
+        <span class="text-danger" asp-validation-for="MinWeight"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Maximum weight</label>
         <input type="number" min="1" max="105" step="any" class="form-control" asp-for="MaxWeight" id="MaxWeight" required>
+        <span class="text-danger" asp-validation-for="MaxWeight"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Minimum life expectancy</label>
         <input type="number" min="5" max="20" step="1" class="form-control" asp-for="MinExpectancy" required>
+        <span class="text-danger" asp-validation-for="MinExpectancy"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Maximum life expectancy</label>
         <input type="number" min="5" max="20" step="1" class="form-control" asp-for="MaxExpectancy" required>
+        <span class="text-danger" asp-validation-for="MaxExpectancy"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Grooming frequency</label>

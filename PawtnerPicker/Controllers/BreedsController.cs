@@ -28,8 +28,10 @@ public class BreedsController : Controller
     [HttpPost]
     public async Task<IActionResult> Pick(PickBreedViewModel pickBreedViewModel)
     {
+        if (!ModelState.IsValid) return View(pickBreedViewModel);
         var recommendations = await _pickBreedService.GetRecommendations(pickBreedViewModel);
         return View("Recommendations", recommendations);
+
     }
     
     [HttpGet]
@@ -65,6 +67,7 @@ public class BreedsController : Controller
     {
         var breed = await GetBreedById.GetBreedDetails(_dataContext, updateBreed.Id);
         UpdateBreedProps.Update(breed, updateBreed);
+        if (!ModelState.IsValid) return View(breed);
         await _dataContext.SaveChangesAsync();
         return RedirectToAction("DisplayBreeds");
     }
