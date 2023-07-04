@@ -4,5 +4,56 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Breed.BreedName</h2>
-<img src="@Model.UrlImage" alt="Breed image">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>@Model.Breed.BreedName</h3>
+            <img src="@Model.UrlImage" alt="Breed image" class="img-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>MinHeight</h3>
+                    <p>@Model.Breed.MinHeight cm</p>
+                    <h3>MinWeight</h3>
+                    <p>@Model.Breed.MinWeight kg</p>
+                    <h3>MinExpectancy</h3>
+                    <p>@Model.Breed.MinExpectancy years</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>MaxHeight</h3>
+                    <p>@Model.Breed.MaxHeight cm</p>
+                    <h3>MaxWeight</h3>
+                    <p>@Model.Breed.MaxWeight kg</p>
+                    <h3>MaxExpectancy</h3>
+                    <p>@Model.Breed.MaxExpectancy years</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h3>Description</h3>
+                <p>@Model.Breed.Description</p>
+                <div class="col-md-6">
+                    <h3>Temperament</h3>
+                    <p>@Model.Breed.Temperament</p>
+                    <h3>Popularity</h3>
+                    <p>@Model.Breed.Popularity</p>
+                    <h3>Grooming Category</h3>
+                    <p>@Model.Breed.GroomingFrequency.GroomingFrequencyCategory</p>
+                    <h3>Energy Level</h3>
+                    <p>@Model.Breed.EnergyLevel.EnergyLevelCategory</p>
+
+                </div>
+                <div class="col-md-6">
+                    <h3>Group</h3>
+                    <p>@Model.Breed.Group</p>
+                    <h3>Shedding</h3>
+                    <p>@Model.Breed.Shedding.SheddingCategory</p>
+                    <h3>Trainability</h3>
+                    <p>@Model.Breed.Trainability.TrainabilityCategory</p>
+                    <h3>Demeanor</h3>
+                    <p>@Model.Breed.Demeanor.DemeanorCategory</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
