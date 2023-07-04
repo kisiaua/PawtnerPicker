@@ -7,7 +7,6 @@ using PawtnerPicker.Models.ViewModels;
 using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
-[Authorize]
 public class BreedsController : Controller
 {
 
@@ -57,23 +56,30 @@ public class BreedsController : Controller
     }
     
     [HttpGet]
+    [Authorize(Policy = "RequireAdministratorRole")]
     public async Task<IActionResult> Edit(int id)
     {
         var breed = await GetBreedById.GetBreedDetails(_dataContext, id);
         return View(breed);
     }
 
+    
     [HttpPost]
+    [Authorize(Policy = "RequireAdministratorRole")]
     public async Task<IActionResult> Edit(Breed updateBreed)
     {
-        var breed = await GetBreedById.GetBreedDetails(_dataContext, updateBreed.Id);
-        UpdateBreedProps.Update(breed, updateBreed);
-        if (!ModelState.IsValid) return View(breed);
-        await _dataContext.SaveChangesAsync();
-        return RedirectToAction("DisplayBreeds");
+            var breed = await GetBreedById.GetBreedDetails(_dataContext, updateBreed.Id);
+            UpdateBreedProps.Update(breed, updateBreed);
+            if (!ModelState.IsValid) return View(breed);
+            await _dataContext.SaveChangesAsync();
+            return RedirectToAction("DisplayBreeds");
+
+
     }
 
+    
     [HttpPost]
+    [Authorize(Policy = "RequireAdministratorRole")]
     public async Task<IActionResult> Remove(int id)
     {
         var delBreed = await GetBreedById.GetBreedDetails(_dataContext, id);
