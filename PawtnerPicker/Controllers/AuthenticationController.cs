@@ -50,6 +50,7 @@ namespace PawtnerPicker.Controllers
             bool userExist = _dataContext.Authentications.Any(x => x.Login == loginViewModel.Login && x.Password == loginViewModel.Password);
             if (userExist)
             {
+                //TODO: It can be simplified
                 var usernames = await _dataContext.Authentications.ToListAsync();
                 foreach (var user in usernames)
                 {

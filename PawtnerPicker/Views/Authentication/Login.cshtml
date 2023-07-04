@@ -2,24 +2,22 @@
 @{
     ViewBag.Title = "Login";
 }
+<div style="text-align-last:center;">
+    <h2>Sign In</h2>
+</div>
 
-
-<h2 class="mb-4">SignIn</h2>
+<div class="login">
 <form action = "Login" method="post">
-    <div class="mb-3">
-        <label class="form-label">Login</label>
-        <input type="text" class="form-control" placeholder = "Username" asp-for="Login">
-    </div>
-        <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" autocomplete="off" placeholder = "Password" asp-for="Password">
-    </div>
-        </div>
-        <div class="mb-3">
-        <label class="form-label">Remember me</label>
+        <label><b>Username</b></label>
+        <input type="text" placeholder = "Username" id="Uname" asp-for="Login">
+        <br /><br />
+        <label><b>Password</b></label>
+        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="Password">
+        <br /><br />
+        <button type="submit" value="Login" name="value" id="log">Login</button>
+        <br /><br />
         <input type="checkbox" asp-for="Remember">
-    </div>
-    <button type="submit" class="btn btn-primary" value="Login" name="value">Login</button>
-    <button type="submit" class="btn btn-primary" value="Register" name="value">Register</button>
+        <span>Remember me</span>
 </form>
+</div>
 

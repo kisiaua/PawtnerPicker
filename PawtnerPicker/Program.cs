@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PawtnerPicker.Data;
 using PawtnerPicker.Services;
@@ -14,6 +15,11 @@ builder.Services.AddScoped<ICsvProcesssingService, CsvProcessingService>();
 builder.Services.AddScoped<IPickBreedService, PickBreedService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => options.LoginPath = "/Authentication/Login");
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdministratorRole",
+         policy => policy.RequireRole("Admin"));
+});
 
 var app = builder.Build();
 

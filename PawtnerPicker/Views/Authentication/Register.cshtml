@@ -3,23 +3,20 @@
     ViewBag.Title = "Register";
 }
 
-<h1 class="mb-4">Register</h1>
-<form action = "Register" method="post" autocomplete="off">
-    <div class="mb-3">
-        <label class="form-label">Login*</label>
-        <input type="text" class="form-control" asp-for="Login">
-    </div>
-        <div class="mb-3">
-        <label class="form-label">Password*</label>
-        <input type="password" class="form-control" asp-for="Password">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Confirm Password*</label>
-        <input type="password" class="form-control" asp-for="ConfirmPassword">
-    </div>
-        <div class="mb-3">
-        <label class="form-label">Employee Code</label>
-        <input type="password" class="form-control" asp-for="EmployeeCode">
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+<div style="text-align-last:center;">
+    <h2>Register</h2>
+</div>
+<div class="login">
+<form action = "Register" method="post">
+        <label><b>Username</b></label>
+        <input type="text" placeholder = "Username" id="Uname" asp-for="Login" required>
+        <br /><br />
+        <label><b>Password</b></label>
+        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="Password" required>
+        <br /><br />
+        <label><b>ConfirmPassword</b></label>
+        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="ConfirmPassword" required>
+        <br /><br />
+        <button type="submit" value="Login" name="value" id="log">Register</button>
 </form>
+</div>

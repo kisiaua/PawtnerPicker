@@ -20,3 +20,37 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.login {
+    width: 382px;
+    overflow: hidden;
+    margin: auto;
+    padding: 80px;
+    border-radius: 15px;
+    border-style: solid;
+}
+
+#log {
+    width: 200px;
+    margin-right: 500px;
+    height: 30px;
+    border-style: solid;
+    border-radius: 17px;
+    color: black;
+}
+
+#Uname {
+    width: 200px;
+    height: 30px;
+    border-style: solid;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+#Pass {
+    width: 200px;
+    height: 30px;
+    border-style: solid;
+    border-radius: 3px;
+    padding-left: 8px;
+}
