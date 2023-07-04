@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PawtnerPicker.Models.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace PawtnerPicker.Models.ViewModels
 {
@@ -6,7 +7,9 @@ namespace PawtnerPicker.Models.ViewModels
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        [RegistrationValidation("Password", "ConfirmPassword", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+        [RegistrationValidation("Password", "ConfirmPassword", ErrorMessage = "Passwords do not match.")]
         public string EmployeeCode { get; set; }
     }
 }
