@@ -14,7 +14,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped<ICsvProcesssingService, CsvProcessingService>();
 builder.Services.AddScoped<IPickBreedService, PickBreedService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/Authentication/Login");
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Authentication/Login";
+        options.AccessDeniedPath = "/Authentication/AccessDenied";
+    });
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdministratorRole",
