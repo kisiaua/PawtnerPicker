@@ -8,7 +8,6 @@
 </div>
 <div class="login">
     <form action="Register" method="post">
-        <p class="text-danger">@TempData["ErrorRegister"]</p>
         <label><b>Username</b></label>
         <input type="text" placeholder="Username" id="Uname" asp-for="Login" required pattern="[^' ']+">
         <br/><br/>
@@ -19,5 +18,6 @@
         <input type="password" autocomplete="off" placeholder="Confirm Password" id="Pass" asp-for="ConfirmPassword" required pattern="[^' ']+" title="This field is required">
         <br/><br/>
         <button type="submit" value="Login" name="value" id="log">Register</button>
+        <p class="text-danger" style="position:fixed">@TempData["ErrorRegister"]</p>
     </form>
 </div>

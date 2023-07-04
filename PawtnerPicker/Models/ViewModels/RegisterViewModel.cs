@@ -8,9 +8,7 @@ namespace PawtnerPicker.Models.ViewModels
         public string Login { get; set; }
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
-        [RegistrationValidation("Password", "ConfirmPassword", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
-        [RegistrationValidation("Password", "ConfirmPassword", ErrorMessage = "Passwords do not match.")]
         public string EmployeeCode { get; set; }
     }
 }
