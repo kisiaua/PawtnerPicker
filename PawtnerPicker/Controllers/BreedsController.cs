@@ -7,7 +7,7 @@ using PawtnerPicker.Models.ViewModels;
 using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
-
+[Authorize]
 public class BreedsController : Controller
 {
     private readonly DataContext _dataContext;
