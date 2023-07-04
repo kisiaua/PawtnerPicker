@@ -23,11 +23,12 @@ namespace PawtnerPicker.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Login")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

@@ -6,7 +6,7 @@ using PawtnerPicker.Models.Domain;
 using PawtnerPicker.Services;
 
 namespace PawtnerPicker.Controllers;
-
+[Authorize]
 public class ManagementController : Controller
 {
     private readonly DataContext _dataContext;

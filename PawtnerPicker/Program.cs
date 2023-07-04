@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using PawtnerPicker.Data;
 using PawtnerPicker.Services;
@@ -12,7 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped<ICsvProcesssingService, CsvProcessingService>();
 builder.Services.AddScoped<IPickBreedService, PickBreedService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.AccessDeniedPath = "/Home/NotLogIn");
+    .AddCookie(options => options.LoginPath = "/Authentication/Login");
 
 var app = builder.Build();
 
@@ -29,8 +30,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+};
+app.UseCookiePolicy(cookiePolicyOptions);
+
 
 app.MapControllerRoute(
     name: "default",

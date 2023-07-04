@@ -39,19 +39,49 @@ namespace PawtnerPicker.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string value)
         {
+            if(value == "Register")
+            {
+                return RedirectToAction("Register");
+            }
+
+
             bool userExist = _dataContext.Authentications.Any(x => x.Login == loginViewModel.Login && x.Password == loginViewModel.Password);
             if (userExist)
             {
-                var claims = new List<Claim>
+                var usernames = await _dataContext.Authentications.ToListAsync();
+                foreach (var user in usernames)
                 {
-                new Claim(ClaimTypes.Name, loginViewModel.Login),
-                };
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties();
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
-                return RedirectToAction("Index", "Home");
+                    if (user.Login == loginViewModel.Login)
+                    {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, user.Login),
+                            new Claim(ClaimTypes.Role, user.Role),
+                        };
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties();
+                        if (loginViewModel.Remember is true)
+                        {
+                             authProperties = new AuthenticationProperties()
+                            {
+                                IsPersistent = true,
+                                ExpiresUtc = new DateTimeOffset(2038, 1, 1, 0, 0, 0, TimeSpan.FromHours(0))
+                            };
+                        }
+                        else
+                        {
+                            authProperties = new AuthenticationProperties()
+                            {
+                                IsPersistent = false,
+                            };
+                        }
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
             }
 
             ModelState.AddModelError("", "User with given credentials don't exists.");
@@ -73,7 +103,14 @@ namespace PawtnerPicker.Controllers
                         return View();
                     }
                 }
-
+                if (registerViewModel.EmployeeCode != "2137")
+                {
+                    authentication.Role = "User";
+                }
+                else
+                {
+                    authentication.Role = "Admin";
+                }
                 _dataContext.Authentications.Add(authentication);
                 _dataContext.SaveChanges();
                 return RedirectToAction("Login");

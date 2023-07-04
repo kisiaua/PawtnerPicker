@@ -1,5 +1,10 @@
 ﻿@{
-    var isLogged = !string.IsNullOrWhiteSpace(User.Identity.Name);
+    bool isAdmin = false;
+    bool isLogged = !String.IsNullOrWhiteSpace(User.Identity.Name);
+    if (isLogged)
+    {
+       isAdmin = User.IsInRole("Admin");
+    }
 }
 
 <!DOCTYPE html>
@@ -24,38 +29,41 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
+               @{
+                if (!isLogged)
+                {
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
+                                </li>
+                            }
+                            if (isLogged)
+                            {
+                                                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item">
+                                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
-                    <li class="nav-item">
+                                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="DisplayBreeds">Breeds</a>
                     </li>
-                    <li class="nav-item">
+                                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Pick">Pick breed</a>
-                    </li>
-                    @{
-                        if (!isLogged)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
-                            </li>
+                                </li>
+                                if (isAdmin)
+                                {
+                                                                                <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Index">Manage</a>
+                                        </li>
+                                }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="SignOut">SignOut</a>
+                        </li>
+                            }
                         }
-                        if (isLogged)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Management" asp-action="Index">Manage</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="SignOut">SignOut</a>
-                            </li>
-                        }
-                    }
                 </ul>
             </div>
         </div>
