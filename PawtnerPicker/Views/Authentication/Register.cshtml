@@ -7,16 +7,17 @@
     <h2>Register</h2>
 </div>
 <div class="login">
-<form action = "Register" method="post">
+    <form action="Register" method="post">
+        <p class="text-danger">@TempData["ErrorRegister"]</p>
         <label><b>Username</b></label>
-        <input type="text" placeholder = "Username" id="Uname" asp-for="Login" required pattern="[^' ']+">
-        <br /><br />
+        <input type="text" placeholder="Username" id="Uname" asp-for="Login" required pattern="[^' ']+">
+        <br/><br/>
         <label><b>Password</b></label>
-        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="Password" required pattern="[^' ']+" title="This field is required">
-        <br /><br />
-        <label><b>ConfirmPassword</b></label>
-        <input type="password" autocomplete="off" placeholder = "Password" id="Pass" asp-for="ConfirmPassword" required pattern="[^' ']+" title="This field is required">
-        <br /><br />
+        <input type="password" autocomplete="off" placeholder="Password" id="Pass" asp-for="Password" required pattern="[^' ']+" title="This field is required">
+        <br/><br/>
+        <label><b>Confirm Password</b></label>
+        <input type="password" autocomplete="off" placeholder="Confirm Password" id="Pass" asp-for="ConfirmPassword" required pattern="[^' ']+" title="This field is required">
+        <br/><br/>
         <button type="submit" value="Login" name="value" id="log">Register</button>
-</form>
+    </form>
 </div>

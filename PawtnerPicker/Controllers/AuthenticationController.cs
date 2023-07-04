@@ -89,7 +89,7 @@ namespace PawtnerPicker.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "User with given credentials don't exists.");
+            TempData["ErrorLogin"] = "Invalid login or password";
 
             return View();
             
@@ -120,6 +120,9 @@ namespace PawtnerPicker.Controllers
                 _dataContext.SaveChanges();
                 return RedirectToAction("Login");
             }
+            
+            TempData["ErrorRegister"] = "Passwords do not match";
+            
             return View();
         }
     }
